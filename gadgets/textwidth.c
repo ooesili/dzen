@@ -26,6 +26,7 @@ THE SOFTWARE.
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include <locale.h>
 #include<X11/Xlib.h>
 
 typedef struct _Fnt {
@@ -110,7 +111,8 @@ main(int argc, char *argv[])
 	}
 
 	setfont(myfont);
-	printf("%u\n", textw(text, strlen(text)));
+        setlocale(LC_ALL, "");
+	printf("%u\n", textw(text, mbstowcs(NULL, text, 0)));
 
 	return EXIT_SUCCESS;
 }
